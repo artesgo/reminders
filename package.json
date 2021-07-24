@@ -1,0 +1,33 @@
+{
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite --port 3090",
+		"build": "npm run format && vite build && npm run build:bg",
+		"build:bg": "esbuild src/background.ts --bundle --outfile=dist/background.js",
+		"serve": "vite preview",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+		"format": "prettier --write --plugin-search-dir=. ."
+	},
+	"devDependencies": {
+		"@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
+		"@tsconfig/svelte": "^2.0.1",
+		"@types/chrome": "^0.0.146",
+		"@typescript-eslint/eslint-plugin": "^4.19.0",
+		"@typescript-eslint/parser": "^4.19.0",
+		"dayjs": "^1.10.5",
+		"esbuild": "^0.12.15",
+		"eslint": "^7.22.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-svelte3": "^3.2.0",
+		"prettier": "~2.2.1",
+		"prettier-plugin-svelte": "^2.2.0",
+		"svelte": "^3.37.0",
+		"svelte-check": "^2.1.0",
+		"svelte-preprocess": "^4.7.2",
+		"tslib": "^2.2.0",
+		"typescript": "^4.3.2",
+		"vite": "^2.3.8"
+	}
+}

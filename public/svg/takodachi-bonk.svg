@@ -1,0 +1,102 @@
+<svg width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="takodachi-bonk" clip-path="url(#clip0)">
+    <g id="Group 1">
+      <g id="Vector 5">
+        <path d="M17 37.01c-3 0-3.5-4-3.5-4H21s-1 4-4 4zM35 33.01h-8s1 4 4 4 4-4 4-4z" fill="#444773"/>
+        <path d="M17 37.01c-3 0-3.5-4-3.5-4H21s-1 4-4 4zM35 33.01h-8s1 4 4 4 4-4 4-4z" stroke="#000"/>
+      </g>
+      <g id="body">
+        <g filter="url(#filter0_ii)">
+          <path d="M8 22.01c-1 2-2 6-2 8s0 3 1 5 2 3 4.5 3 3.5-4.5 5.5-4.5 2.5 4.5 6.5 4.5 5-4.5 7-4.5 4 2.5 8.5 2.5 3.3-5 3-6.5c-.3-1.5-1.5-4-3-6.5s-4-6.5-4-6.5 1-.5 2-1.5 1-1.5 1-2.5-.5-3-2-3-4.5 2.5-4.5 2.5-3-1.5-8.5-1.5-8 2-8 2-4-3.75-5-3.5-2 1.5-2 2.5 0 2 1.5 3 2 1 2 1-2.5 4.5-3.5 6.5z" fill="#8074A9"/>
+        </g>
+        <path d="M8 22.01c-1 2-2 6-2 8s0 3 1 5 2 3 4.5 3 3.5-4.5 5.5-4.5 2.5 4.5 6.5 4.5 5-4.5 7-4.5 4 2.5 8.5 2.5 3.3-5 3-6.5c-.3-1.5-1.5-4-3-6.5s-4-6.5-4-6.5 1-.5 2-1.5 1-1.5 1-2.5-.5-3-2-3-4.5 2.5-4.5 2.5-3-1.5-8.5-1.5-8 2-8 2-4-3.75-5-3.5-2 1.5-2 2.5 0 2 1.5 3 2 1 2 1-2.5 4.5-3.5 6.5z" stroke="#000" stroke-width="1.5"/>
+      </g>
+      <g id="eyes" filter="url(#filter1_d)">
+        <path d="M30 16.5s-4 2.51-3 3.01 4 0 4 0m-18.5 0s2.5.5 3.5 0-2-3.01-2-3.01" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      <path id="mouth" d="M21.33 23.25c.9 0 1.48-.27 2-.52l.04-.02c.5-.24.96-.46 1.63-.46.3 0 .5.12.65.31.16.2.26.5.29.84.06.7-.18 1.5-.62 1.94a5.56 5.56 0 01-3.99 1.42c-.8 0-1.34-.12-1.8-.35a5.35 5.35 0 01-1.35-1.07 2.55 2.55 0 01-.68-1.77c0-.65.24-1.16.61-1.35.19-.09.35-.09.53-.04.19.06.39.18.65.34l.03.03c.5.3 1.13.7 2.01.7z" fill="#8D2B46" stroke="#000" stroke-width=".5"/>
+      <path id="tongue" d="M22.75 27v-.25h-.25c-1.24 0-2.2-.12-2.9-.41a2.22 2.22 0 01-1.36-1.4c-.12-.36-.11-.57-.05-.7.05-.12.17-.22.43-.3.26-.1.62-.14 1.08-.17.46-.02 1-.02 1.63-.02 1.25 0 2.12.13 2.68.36.27.12.46.25.57.4.11.14.17.3.17.5 0 .13 0 .2-.04.31-.05.11-.15.26-.39.5l-.07.08v.1a16.84 16.84 0 00.02.77l-.01.7c-.04.45-.15.7-.37.8-.2.1-.34.1-.45.05a.85.85 0 01-.36-.33 2.14 2.14 0 01-.33-.99z" fill="#FF8B9F" stroke="#000" stroke-width=".5"/>
+      <g id="tooth">
+        <path d="M23.03 22.99L23 23s0-.02.03-.01l1.17-.49c1.2-.5 1.3 0 1.3 0L24.2 24c-.84-.85-1.1-1-1.17-1.01z" fill="#fff"/>
+        <path d="M23 23l1.2-.5c1.2-.5 1.3 0 1.3 0L24.2 24C23 22.79 23 23 23 23z" stroke="#000" stroke-width=".5"/>
+      </g>
+      <g id="blush" filter="url(#filter2_d)" fill="#F19AFF">
+        <path d="M12.5 21.01c-1.5 0-2 .5-2 1.5s.5 1.5 2 1.5 2.5-.5 2.5-1.5-1-1.5-2.5-1.5zM33.5 22.01c0-1-1-1.5-2.5-1.5s-2 .5-2 1.5.5 1.5 2 1.5 2.5-.5 2.5-1.5z"/>
+      </g>
+    </g>
+    <g id="Vector 6">
+      <g filter="url(#filter3_i)">
+        <path d="M25.5 8.5c.5-3.5-3-7.5-3-7.5l-2 1.5 1.5 2-.5.5L20 3l-2 1.5s2.5 2.5 2.5 4-1 2.5-1 2.5S-4.5 31-6 33c-.54.72-1.36 2.29-2 4-1.13 3.03-2 4.5-2 4.5l2.5 2s.39-2.47 1.5-5.5c1-1.5 1.78-1.78 2.5-2.5 2-2 25-20.5 25-20.5s3.5-3 4-6.5z" fill="#DB3030"/>
+      </g>
+      <path d="M25.5 8.5c.5-3.5-3-7.5-3-7.5l-2 1.5 1.5 2-.5.5L20 3l-2 1.5s2.5 2.5 2.5 4-1 2.5-1 2.5S-4.5 31-6 33c-.54.72-1.36 2.29-2 4-1.13 3.03-2 4.5-2 4.5l2.5 2s.39-2.47 1.5-5.5c1-1.5 1.78-1.78 2.5-2.5 2-2 25-20.5 25-20.5s3.5-3 4-6.5z" stroke="#000" stroke-width=".5"/>
+    </g>
+    <g id="Vector 7" filter="url(#filter4_di)">
+      <path d="M25.5 8.5c.5-3.5-3-7.5-3-7.5l-2 1.5 1.5 2-.5.5L20 3l-2 1.5s2.5 2.5 2.5 4-1 2.5-1 2.5-2.53 2.1-6 5.03l2 .47 1 2.53 5-4.03s3.5-3 4-6.5z" fill="#B4B0AE"/>
+      <path d="M25.5 8.5c.5-3.5-3-7.5-3-7.5l-2 1.5 1.5 2-.5.5L20 3l-2 1.5s2.5 2.5 2.5 4-1 2.5-1 2.5-2.53 2.1-6 5.03l2 .47 1 2.53 5-4.03s3.5-3 4-6.5z" stroke="#000" stroke-width=".5"/>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_ii" x="3.25" y="6.25" width="41.87" height="34.51" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="2" dy="2"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix values="0 0 0 0 0.938592 0 0 0 0 0.81125 0 0 0 0 0.983333 0 0 0 0.25 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="-2" dy="-2"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="effect1_innerShadow" result="effect2_innerShadow"/>
+    </filter>
+    <filter id="filter1_d" x="7.75" y="15.75" width="28" height="12.73" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+    <filter id="filter2_d" x="4.5" y="14.51" width="35" height="15.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset/>
+      <feGaussianBlur stdDeviation="3"/>
+      <feColorMatrix values="0 0 0 0 0.956863 0 0 0 0 0.615686 0 0 0 0 1 0 0 0 1 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+    <filter id="filter3_i" x="-10.33" y=".66" width="37.12" height="45.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="1" dy="2"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix values="0 0 0 0 0.964706 0 0 0 0 0.439216 0 0 0 0 0.439216 0 0 0 1 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow"/>
+    </filter>
+    <filter id="filter4_di" x="11.96" y=".66" width="16.84" height="22.78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dx="1" dy="2"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dx="1" dy="2"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix values="0 0 0 0 0.878431 0 0 0 0 0.878431 0 0 0 0 0.878431 0 0 0 1 0"/>
+      <feBlend in2="shape" result="effect2_innerShadow"/>
+    </filter>
+    <clipPath id="clip0">
+      <path fill="#fff" d="M0 0h48v48H0z"/>
+    </clipPath>
+  </defs>
+</svg>
