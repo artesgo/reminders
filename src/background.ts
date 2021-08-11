@@ -1,6 +1,6 @@
-import { onLinkContext } from './background/context';
 import { createNotification } from './background/notification';
 import { schedule, getSchedule, deleteScheduled } from './background/scheduler';
+import { createTab } from './background/tab';
 
 // spin up listeners, add contextMenu items
 export class BackgroundApp {
@@ -25,7 +25,27 @@ export class BackgroundApp {
 			});
 		});
 
-		chrome.contextMenus.create({ contexts: ['link'], onclick: onLinkContext });
+		chrome.runtime.onInstalled.addListener(() => {
+			chrome.contextMenus.create({
+				id: 'reminder-link',
+				contexts: ['link'],
+				title: 'Create Reminder with Link',
+			});
+			chrome.contextMenus.create({
+				id: 'reminder-page',
+				contexts: ['page'],
+				title: 'Create Reminder with Page',
+			});
+		});
+
+		chrome.contextMenus.onClicked.addListener((menu) => {
+			if (menu.menuItemId === 'reminder-link') {
+				createTab(menu.linkUrl);
+			}
+			if (menu.menuItemId === 'reminder-page') {
+				createTab(menu.pageUrl);
+			}
+		});
 	}
 }
 

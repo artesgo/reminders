@@ -14,7 +14,16 @@
 	let _list = '';
 	onMount(() => {
 		getPreviousAlarms();
+		chrome.runtime.onMessage.addListener((msg) => contextListener(msg));
 	});
+
+	function contextListener(message) {
+		if (!!message.contextCreateLink) {
+			for (let ordered of $reminderList) {
+				newUrl[ordered.list] = message.contextCreateLink;
+			}
+		}
+	}
 
 	function _sort(list: Reminder[], by: string) {
 		return list.sort((a, b) => {

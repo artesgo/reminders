@@ -9,8 +9,7 @@
 	export let month: number = dayjs().month();
 	export let year: number = dayjs().year();
 	export let reminder: Reminder = null;
-	let controls = false;
-	let controlMonths = false;
+	export let shownWeeks = 6;
 	let schedule = createEventDispatcher();
 	let dayOfWeek: number;
 	let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -40,6 +39,7 @@
 		if (hour > 12) hour -= 12;
 		// store present for comparison
 		present = dayjs();
+		focusMonthYearSkip();
 	});
 	$: {
 		dayOfWeek =
@@ -79,11 +79,14 @@
 	}
 
 	function calculateNumberOfRowsInMonth(days, start) {
-		return Math.ceil((days + start) / 7);
+		if (!!shownWeeks) {
+			return shownWeeks;
+		} else {
+			return Math.ceil((days + start) / 7);
+		}
 	}
 	function selectDate(date) {
 		selectedDate = date;
-		controlMonths = false;
 	}
 	function selectTime() {
 		let _hr = Number.parseInt(`${hour}`);
@@ -122,12 +125,26 @@
 	function nextYear() {
 		year++;
 	}
+	function focusMonthYearSkip() {
+		focusElementById('monthYearSkip');
+	}
+	function focusDateSkip() {
+		focusElementById('dateSkip');
+	}
+	function focusHour() {
+		focusElementById('ampm');
+	}
+	function focusElementById(id: string) {
+		document.getElementById(id).focus();
+	}
 </script>
 
 <section class="calendar">
-	<button on:click={() => (controls = true)}>Select Month and Year</button>
-	{#if controls}
-		<div class="grid split">
+	<button id="monthYearSkip" class="sr-only" on:click={focusDateSkip}>
+		Skip Month and Year Selection
+	</button>
+	{#if !!present}
+		<div class="grid split month-year--selection">
 			<button class="prev" on:click={prevYear}>
 				{year - 1}
 				<span class="sr-only">
@@ -139,10 +156,9 @@
 			<div class="months">
 				{#each months as mth, index}
 					<button
-						class:present={year === present.year() && index === present.month()}
+						class:selected={index === month}
 						on:click={() => {
 							month = index;
-							controls = false;
 						}}
 					>
 						{mth}
@@ -161,47 +177,45 @@
 		</div>
 	{/if}
 
-	<button on:click={() => (controlMonths = true)}>Select day in month</button>
-	{#if controlMonths}
-		<h2>Date Selection</h2>
-		<table>
-			<caption>Calendar Month ({months[month]} / {year})</caption>
-			<thead>
-				<th>Sun</th>
-				<th>Mon</th>
-				<th>Tue</th>
-				<th>Wed</th>
-				<th>Thu</th>
-				<th>Fri</th>
-				<th>Sat</th>
-			</thead>
-			<tbody>
-				{#each _weeks as week, index}
-					<tr>
-						{#each week as day}
-							<td>
-								<button
-									class:selected={day.isSame(selectedDate)}
-									class:last-month={day.month() < month || day.year() < year}
-									class:next-month={day.month() > month || day.year() > year}
-									on:click={() => selectDate(day)}
-								>
-									{#if day.isSame(selectedDate)}
-										<span class="sr-only">Selected</span>
-									{/if}
-									{day.date()}
-								</button>
-							</td>
-						{/each}
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	{/if}
+	<button id="dateSkip" class="sr-only" on:click={focusHour}> Skip Date Selection </button>
+	<h2>Date Selection</h2>
+	<table>
+		<caption>Calendar Month ({months[month]} / {year})</caption>
+		<thead>
+			<th>Sun</th>
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+		</thead>
+		<tbody>
+			{#each _weeks as week}
+				<tr>
+					{#each week as day}
+						<td>
+							<button
+								class:selected={day.isSame(selectedDate)}
+								class:last-month={day.month() < month || day.year() < year}
+								class:next-month={day.month() > month || day.year() > year}
+								on:click={() => selectDate(day)}
+							>
+								{#if day.isSame(selectedDate)}
+									<span class="sr-only">Selected</span>
+								{/if}
+								{day.date()}
+							</button>
+						</td>
+					{/each}
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 
 	<h2>Time Selection</h2>
 	<div class="grid time">
-		<button class="ampm" on:click={() => (isAM = !isAM)}>
+		<button id="ampm" class="ampm" on:click={() => (isAM = !isAM)}>
 			{#if isAM}
 				<span class="meridian" transition:slide>A</span>
 			{:else}
@@ -223,9 +237,7 @@
 		</label>
 		<button on:click={selectTime}>Select Time</button>
 	</div>
-	selected date ({formattedDateTime ? formattedDateTime.date() : ''}) selected date(ms) ({formattedDateTime
-		? formattedDateTime
-		: ''})
+	selected date ({formattedDateTime ? formattedDateTime.date() : ''})
 </section>
 
 <style>
@@ -236,9 +248,6 @@
 	}
 	.calendar h2 {
 		text-align: center;
-	}
-	.present {
-		border-left: 10px solid #2e86ab;
 	}
 	.ampm {
 		position: relative;
@@ -270,6 +279,11 @@
 	.selected {
 		border-left: 10px solid #2e86ab;
 		transition: 200ms;
+	}
+
+	table,
+	.month-year--selection {
+		margin-bottom: 1rem;
 	}
 
 	table button {
