@@ -265,12 +265,12 @@
 	}
 
 	.split {
-		grid-template-columns: 100px 1fr 100px;
+		grid-template-columns: 1fr 3fr 1fr;
 		width: 100%;
 	}
 	.months {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem;
 	}
 	.time {
 		grid-template-columns: 40px 50px 50px 100px;
