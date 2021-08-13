@@ -22,6 +22,7 @@ export type ReminderState = {
 	listOrder: number;
 	populated: boolean;
 	takodachiMode: boolean;
+	darkMode: boolean;
 };
 
 const initialState: ReminderState = {
@@ -30,6 +31,7 @@ const initialState: ReminderState = {
 	listOrder: 0,
 	populated: false,
 	takodachiMode: false,
+	darkMode: false,
 };
 
 export const reminderStore = writable(initialState);

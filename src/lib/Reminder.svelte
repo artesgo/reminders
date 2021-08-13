@@ -72,21 +72,18 @@
 	}
 </script>
 
-<header>
-	<h1>Reminders</h1>
-	<div class="grid row">
-		<label>
-			<span class="sr-only">Create Reminder Group</span>
-			<input type="text" bind:value={_list} placeholder={`Create Reminder Group`} />
-		</label>
-		<button on:click={_createList}>Create Group</button>
-	</div>
-</header>
+<div class="grid row">
+	<label>
+		<span class="sr-only">Create Reminder Group</span>
+		<input type="text" bind:value={_list} placeholder={`Create Reminder Group`} />
+	</label>
+	<button class="btn" on:click={_createList}>Create Group</button>
+</div>
 
 <section aria-hidden={scheduler}>
 	<!-- get list by keys -->
 	{#each $reminderList as ordered}
-		<button class="accordion" on:click={() => _toggle(ordered.list)}>
+		<button class="btn accordion" on:click={() => _toggle(ordered.list)}>
 			<h2 class="align-vertical">
 				{#if $takodachiMode}
 					{#if expanded[ordered.list]}
@@ -111,7 +108,9 @@
 			<div class="list-container" transition:slide={{ duration: 200 }}>
 				<div class="list-adder grid row">
 					<div class="reminder-array">
-						<button on:click={() => (scheduler = !scheduler)}>Calendar</button>
+						<button class="btn no-right-border" on:click={() => (scheduler = !scheduler)}
+							>Calendar</button
+						>
 						<label>
 							<span class="sr-only">Reminder Description</span>
 							<input
@@ -131,7 +130,9 @@
 							/>
 						</label>
 					</div>
-					<button on:click={() => _addItem(ordered.list, ordered.order, true)}>Add Item</button>
+					<button class="btn" on:click={() => _addItem(ordered.list, ordered.order, true)}
+						>Add Item</button
+					>
 				</div>
 				<!-- should include key to prevent  -->
 				{#each _sort($reminderStore.reminders[ordered.order][ordered.list], 'when') as reminder (reminder.id)}
@@ -160,13 +161,6 @@
 		overflow: hidden;
 	}
 
-	header button {
-		border-left: 2px solid #2e86ab;
-	}
-	h1 {
-		font-size: 1.2rem;
-		text-align: center;
-	}
 	h2 {
 		font-size: 1rem;
 		font-weight: 300;

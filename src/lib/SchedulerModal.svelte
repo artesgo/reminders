@@ -1,23 +1,32 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import type { Reminder } from '../state/reminders';
+	import { reminderStore } from '../state/reminders';
 	import SchedulerComponent from './SchedulerComponent.svelte';
 	export let scheduler = false;
 	export let reminder: Reminder = null;
 </script>
 
 {#if scheduler}
-	<div class="overlay" transition:slide={{ duration: 200 }}>
+	<div
+		class="overlay"
+		class:dark={$reminderStore.darkMode}
+		class:light={!$reminderStore.darkMode}
+		transition:fade={{ duration: 200 }}
+	>
 		<div class="scheduler">
 			<div class="scheduler-items">
 				<SchedulerComponent on:schedule {reminder} />
-				<button on:click={() => (scheduler = !scheduler)}>Cancel</button>
+				<button class="btn" on:click={() => (scheduler = !scheduler)}>Cancel</button>
 			</div>
 		</div>
 	</div>
 {/if}
 
-<style>
+<style lang="scss">
+	$light: #fcfcfc;
+	$dark: #1e1e24;
+
 	.overlay {
 		position: fixed;
 		overflow-y: scroll;
@@ -26,8 +35,8 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background-color: #2e86abcb;
-		box-shadow: 0 0 20px #2e86abcb;
+		background-color: #2e86ab59;
+		box-shadow: 0 0 20px #2e86ab59;
 	}
 	.scheduler {
 		height: 100%;
@@ -36,10 +45,16 @@
 		align-items: center;
 	}
 	.scheduler-items {
-		background-color: #fcfcfc;
 		padding: 20px 20px;
 		width: 450px;
-		box-shadow: 0 0 10px #fcfcfc;
 		border-radius: 4px;
+	}
+	.dark .scheduler-items {
+		background-color: $dark;
+		box-shadow: 0 0 10px $dark;
+	}
+	.light .scheduler-items {
+		background-color: $light;
+		box-shadow: 0 0 10px $light;
 	}
 </style>

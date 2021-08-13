@@ -1,12 +1,50 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Reminder from './lib/Reminder.svelte';
+	import { reminderStore } from './state/reminders';
+	onMount(() => {
+		$reminderStore.darkMode = localStorage.getItem('darkMode') === 'true';
+	});
+
+	function toggleDarkMode() {
+		$reminderStore.darkMode = !$reminderStore.darkMode;
+		localStorage.setItem('darkMode', $reminderStore.darkMode ? 'true' : 'false');
+	}
 </script>
 
-<main>
-	<Reminder />
-</main>
+<div class="container" class:dark={$reminderStore.darkMode} class:light={!$reminderStore.darkMode}>
+	<main>
+		<header>
+			<button class="btn-icon" on:click={toggleDarkMode}>
+				{#if $reminderStore.darkMode}
+					<div class="sr-only">Show Light Mode</div>
+					<img src="./svg/sun.svg" role="presentation" alt="" />
+				{:else}
+					<div class="sr-only">Show Dark Mode</div>
+					<img src="./svg/moon.svg" role="presentation" alt="" />
+				{/if}
+			</button>
+			<h1>Reminders</h1>
+			<div class="spacer" />
+		</header>
+		<Reminder />
+		<style>
+			header {
+				display: grid;
+				grid-template-columns: 32px 1fr 32px;
+			}
 
-<style global>
+			header img {
+				width: 32px;
+				height: 32px;
+			}
+		</style>
+	</main>
+</div>
+
+<style lang="scss" global>
+	$light: #fcfcfc;
+	$dark: #1e1e24;
 	@font-face {
 		font-family: 'Quicksand';
 		src: local('Quicksand'), url('/font/static/Quicksand-Regular.ttf');
@@ -14,6 +52,11 @@
 	@font-face {
 		font-family: 'QuicksandBold';
 		src: local('QuicksandBold'), url('/font/static/Quicksand-Bold.ttf');
+	}
+
+	body {
+		padding: 0;
+		margin: 0;
 	}
 
 	h1,
@@ -27,8 +70,25 @@
 		margin: 0 auto;
 		font-family: 'Quicksand' !important;
 		box-sizing: border-box;
-		color: #1e1e24;
 		font-weight: 700;
+	}
+
+	.container {
+		height: 100vh;
+		padding: 1rem;
+		transition: 300ms;
+		&.dark {
+			background: $dark;
+			color: $light;
+		}
+		&.light {
+			background: $light;
+			color: $dark;
+		}
+	}
+
+	button.btn.no-right-border {
+		border-right: none;
 	}
 
 	nav,
@@ -42,13 +102,40 @@
 
 	button {
 		background: none;
-		border: 1px solid #1e1e24;
-		border-left: 2px solid #2e86ab;
 		text-align: center;
+		border: none;
+		cursor: pointer;
+	}
+
+	button.btn {
+		border-left: 2px solid #2e86ab;
+		color: currentColor;
+	}
+
+	a {
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.dark {
+		.btn {
+			border: 1px solid $light;
+		}
+		a {
+			color: $light;
+		}
+	}
+	.light {
+		.btn {
+			border: 1px solid $dark;
+		}
+		a {
+			color: $dark;
+		}
 	}
 
 	input {
-		border: 1px solid #1e1e24;
+		border: 1px solid $dark;
 	}
 
 	.grid {

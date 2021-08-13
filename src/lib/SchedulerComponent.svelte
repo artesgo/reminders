@@ -140,12 +140,12 @@
 </script>
 
 <section class="calendar">
-	<button id="monthYearSkip" class="sr-only" on:click={focusDateSkip}>
+	<button id="monthYearSkip" class="btn sr-only" on:click={focusDateSkip}>
 		Skip Month and Year Selection
 	</button>
 	{#if !!present}
 		<div class="grid split month-year--selection">
-			<button class="prev" on:click={prevYear}>
+			<button class="btn prev" on:click={prevYear}>
 				{year - 1}
 				<span class="sr-only">
 					{#if year - 1 < present.year()}
@@ -156,6 +156,7 @@
 			<div class="months">
 				{#each months as mth, index}
 					<button
+						class="btn"
 						class:selected={index === month}
 						on:click={() => {
 							month = index;
@@ -171,13 +172,13 @@
 					</button>
 				{/each}
 			</div>
-			<button class="next" on:click={nextYear}>
+			<button class="btn next" on:click={nextYear}>
 				{year + 1}
 			</button>
 		</div>
 	{/if}
 
-	<button id="dateSkip" class="sr-only" on:click={focusHour}> Skip Date Selection </button>
+	<button id="dateSkip" class="btn sr-only" on:click={focusHour}> Skip Date Selection </button>
 	<h2>Date Selection</h2>
 	<table>
 		<caption>Calendar Month ({months[month]} / {year})</caption>
@@ -196,6 +197,7 @@
 					{#each week as day}
 						<td>
 							<button
+								class="btn"
 								class:selected={day.isSame(selectedDate)}
 								class:last-month={day.month() < month || day.year() < year}
 								class:next-month={day.month() > month || day.year() > year}
@@ -215,7 +217,7 @@
 
 	<h2>Time Selection</h2>
 	<div class="grid time">
-		<button id="ampm" class="ampm" on:click={() => (isAM = !isAM)}>
+		<button id="ampm" class="btn ampm" on:click={() => (isAM = !isAM)}>
 			{#if isAM}
 				<span class="meridian" transition:slide>A</span>
 			{:else}
@@ -225,19 +227,14 @@
 		</button>
 		<label>
 			<span class="sr-only">Hour</span>
-			<!-- validate only 0-23 no decimals -->
-			<!-- mandatory field -->
 			<input type="text" bind:value={hour} placeholder="12" />
 		</label>
 		<label>
 			<span class="sr-only">Minute</span>
-			<!-- validate only 0-59 no decimals -->
-			<!-- optional field -->
 			<input type="text" bind:value={minute} placeholder="00" />
 		</label>
-		<button on:click={selectTime}>Select Time</button>
+		<button class="btn" on:click={selectTime}>Select Time</button>
 	</div>
-	selected date ({formattedDateTime ? formattedDateTime.date() : ''})
 </section>
 
 <style>
@@ -262,6 +259,7 @@
 	.next-month,
 	.last-month {
 		background-color: #f0edee;
+		color: #1e1e24;
 	}
 
 	.split {

@@ -1,8 +1,6 @@
 import { reminderStore, Reminder } from './reminders';
 import { splitter } from '../background/helpers';
 
-// list--order--url--description
-// when
 export function parseStorage(storage) {
 	let reminders = [];
 	for (let id of Object.keys(storage)) {

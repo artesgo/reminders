@@ -61,11 +61,15 @@
 		</div>
 	{:else}
 		<div class="reminder-array">
-			<button on:click={() => (scheduler = !scheduler)}>Update Time</button>
+			<button class="btn no-right-border" on:click={() => (scheduler = !scheduler)}
+				>Update Time</button
+			>
 			<label>
+				<div class="sr-only">Reminder Description</div>
 				<input type="text" bind:value={reminder.description} />
 			</label>
 			<label>
+				<div class="sr-only">Reminder Url</div>
 				<input type="text" bind:value={reminder.url} />
 			</label>
 		</div>
@@ -73,13 +77,14 @@
 	<div class="sub-grid controls">
 		{#if _edit}
 			<button
+				class="btn no-right-border"
 				on:click={() => createUpdateItem(reminder, true, false)}
 				on:click={() => (_edit = !_edit)}>Save</button
 			>
 		{:else}
-			<button on:click={() => (_edit = !_edit)}>Edit</button>
+			<button class="btn no-right-border" on:click={() => (_edit = !_edit)}>Edit</button>
 		{/if}
-		<button on:click={() => deleteItem(reminder)}>Delete</button>
+		<button class="btn" on:click={() => deleteItem(reminder)}>Delete</button>
 	</div>
 </div>
 
