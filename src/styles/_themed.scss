@@ -1,0 +1,63 @@
+@use './variables' as vars;
+
+button.btn {
+	border-left: 2px solid vars.$hilight;
+	text-align: center;
+	&.no-right-border {
+		border-right: none;
+	}
+}
+
+.container {
+	width: 600px;
+	padding: 1rem;
+	&.dark {
+		background: vars.$dark;
+		color: vars.$light;
+		transition: 300ms;
+		.btn {
+			border: 1px solid lighten(vars.$dark, 20%);
+			background: lighten(vars.$dark, 10%);
+			color: vars.$light;
+		}
+		input[type='text'] {
+			border: 1px solid lighten(vars.$dark, 20%);
+			background: lighten(vars.$dark, 10%);
+			color: vars.$light;
+			&:focus {
+				border: 1px solid lighten(vars.$dark, 40%);
+			}
+		}
+		h2 {
+			color: vars.$light;
+		}
+		a {
+			color: vars.$light;
+		}
+	}
+	&.light {
+		background: vars.$light;
+		color: vars.$dark;
+		transition: 300ms;
+		.btn {
+			border: 1px solid vars.$dark;
+			background: darken(vars.$light, 10%);
+			color: vars.$dark;
+		}
+
+		input[type='text'] {
+			background: darken(vars.$light, 10%);
+			border: 1px solid darken(vars.$light, 10%);
+			color: vars.$dark;
+			&:focus {
+				border: 1px solid darken(vars.$light, 40%);
+			}
+		}
+		h2 {
+			color: vars.$dark;
+		}
+		a {
+			color: vars.$dark;
+		}
+	}
+}

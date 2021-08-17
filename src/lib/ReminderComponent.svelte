@@ -4,6 +4,8 @@
 	import { createUpdateItem, deleteItem } from '../state/reminder-actions';
 	import { onDestroy, onMount } from 'svelte';
 	import SchedulerModal from './SchedulerModal.svelte';
+	import { L } from '../i18n-helper/i18n';
+	import { lang } from '../state/lang';
 
 	export let reminder: Reminder;
 	let _edit = false;
@@ -46,7 +48,7 @@
 	{#if !_edit}
 		<div class="reminder-array">
 			{#if _past}
-				<span class="countdown expired"> Expired </span>
+				<span class="countdown expired">{L[$lang].EXPIRED()}</span>
 			{:else}
 				<span class="countdown">{`${when}`}</span>
 			{/if}
@@ -55,21 +57,21 @@
 			</div>
 			<span class="url">
 				{#if !!reminder.url}
-					<a href={reminder.url} target="_blank">Link</a>
+					<a href={reminder.url} target="_blank">{L[$lang].LINK()}</a>
 				{/if}
 			</span>
 		</div>
 	{:else}
 		<div class="reminder-array">
 			<button class="btn no-right-border" on:click={() => (scheduler = !scheduler)}
-				>Update Time</button
+				>{L[$lang].UPDATE_TIME()}</button
 			>
 			<label>
-				<div class="sr-only">Reminder Description</div>
+				<div class="sr-only">{L[$lang].DESCRIPTION()}</div>
 				<input type="text" bind:value={reminder.description} />
 			</label>
 			<label>
-				<div class="sr-only">Reminder Url</div>
+				<div class="sr-only">{L[$lang].URL()}</div>
 				<input type="text" bind:value={reminder.url} />
 			</label>
 		</div>
@@ -79,12 +81,14 @@
 			<button
 				class="btn no-right-border"
 				on:click={() => createUpdateItem(reminder, true, false)}
-				on:click={() => (_edit = !_edit)}>Save</button
+				on:click={() => (_edit = !_edit)}>{L[$lang].SAVE()}</button
 			>
 		{:else}
-			<button class="btn no-right-border" on:click={() => (_edit = !_edit)}>Edit</button>
+			<button class="btn no-right-border" on:click={() => (_edit = !_edit)}
+				>{L[$lang].EDIT()}</button
+			>
 		{/if}
-		<button class="btn" on:click={() => deleteItem(reminder)}>Delete</button>
+		<button class="btn" on:click={() => deleteItem(reminder)}>{L[$lang].DELETE()}</button>
 	</div>
 </div>
 

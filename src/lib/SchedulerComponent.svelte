@@ -1,7 +1,10 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import isToday from 'dayjs/plugin/isToday';
-	import type { Reminder } from '../state/reminders';
+	import { Reminder, reminderStore } from '../state/reminders';
+	import { L } from '../i18n-helper/i18n';
+	import { lang } from '../state/lang';
+
 	dayjs.extend(isToday);
 
 	import { createEventDispatcher, onMount } from 'svelte';
@@ -12,7 +15,7 @@
 	export let shownWeeks = 6;
 	let schedule = createEventDispatcher();
 	let dayOfWeek: number;
-	let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	let months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 	let daysInMonth = dayjs(`${year}-${month}-01`).daysInMonth();
 	let _weeks: Array<any[]> = [];
 	let selectedDate;
@@ -139,9 +142,13 @@
 	}
 </script>
 
-<section class="calendar">
+<section
+	class="calendar"
+	class:dark={$reminderStore.darkMode}
+	class:light={!$reminderStore.darkMode}
+>
 	<button id="monthYearSkip" class="btn sr-only" on:click={focusDateSkip}>
-		Skip Month and Year Selection
+		{L[$lang].SKIP_MONTHS()}
 	</button>
 	{#if !!present}
 		<div class="grid split month-year--selection">
@@ -149,7 +156,7 @@
 				{year - 1}
 				<span class="sr-only">
 					{#if year - 1 < present.year()}
-						dates would be in the past
+						{L[$lang].DATE_IN_PAST()}
 					{/if}
 				</span>
 			</button>
@@ -162,11 +169,11 @@
 							month = index;
 						}}
 					>
-						{mth}
+						{L[$lang][mth]()}
 						<span class="sr-only">
 							{year}
-							{#if year - 1 < present.year() || (year === present.year() && index < present.month())}
-								dates would be in the past
+							{#if year < present.year() || (year === present.year() && index < present.month())}
+								{L[$lang].DATE_IN_PAST()}
 							{/if}
 						</span>
 					</button>
@@ -178,18 +185,18 @@
 		</div>
 	{/if}
 
-	<button id="dateSkip" class="btn sr-only" on:click={focusHour}> Skip Date Selection </button>
-	<h2>Date Selection</h2>
+	<button id="dateSkip" class="btn sr-only" on:click={focusHour}>{L[$lang].SKIP_DAYS()}</button>
+	<h2>{L[$lang].DATE_SELECTION()}</h2>
 	<table>
-		<caption>Calendar Month ({months[month]} / {year})</caption>
+		<caption>{L[$lang][months[month]]()} {year}</caption>
 		<thead>
-			<th>Sun</th>
-			<th>Mon</th>
-			<th>Tue</th>
-			<th>Wed</th>
-			<th>Thu</th>
-			<th>Fri</th>
-			<th>Sat</th>
+			<th>{L[$lang].SUN()}</th>
+			<th>{L[$lang].MON()}</th>
+			<th>{L[$lang].TUE()}</th>
+			<th>{L[$lang].WED()}</th>
+			<th>{L[$lang].THU()}</th>
+			<th>{L[$lang].FRI()}</th>
+			<th>{L[$lang].SAT()}</th>
 		</thead>
 		<tbody>
 			{#each _weeks as week}
@@ -204,7 +211,7 @@
 								on:click={() => selectDate(day)}
 							>
 								{#if day.isSame(selectedDate)}
-									<span class="sr-only">Selected</span>
+									<span class="sr-only">{L[$lang].SELECTED()}</span>
 								{/if}
 								{day.date()}
 							</button>
@@ -215,7 +222,7 @@
 		</tbody>
 	</table>
 
-	<h2>Time Selection</h2>
+	<h2>{L[$lang].TIME_SELECTION()}</h2>
 	<div class="grid time">
 		<button id="ampm" class="btn ampm" on:click={() => (isAM = !isAM)}>
 			{#if isAM}
@@ -226,18 +233,20 @@
 			<div>M</div>
 		</button>
 		<label>
-			<span class="sr-only">Hour</span>
+			<span class="sr-only">{L[$lang].HOUR()}</span>
 			<input type="text" bind:value={hour} placeholder="12" />
 		</label>
 		<label>
-			<span class="sr-only">Minute</span>
+			<span class="sr-only">{L[$lang].MINUTE()}</span>
 			<input type="text" bind:value={minute} placeholder="00" />
 		</label>
-		<button class="btn" on:click={selectTime}>Select Time</button>
+		<button class="btn" on:click={selectTime}>{L[$lang].SELECT_TIME()}</button>
 	</div>
 </section>
 
-<style>
+<style lang="scss">
+	@use '../styles/variables' as vars;
+
 	.calendar {
 		display: flex;
 		flex-direction: column;
@@ -256,10 +265,21 @@
 	.ampm div {
 		margin-left: 0.75rem;
 	}
-	.next-month,
-	.last-month {
-		background-color: #f0edee;
-		color: #1e1e24;
+
+	.light {
+		.btn.next-month,
+		.btn.last-month {
+			background-color: vars.$light;
+			color: vars.$dark;
+		}
+	}
+
+	.dark {
+		.btn.next-month,
+		.btn.last-month {
+			background-color: vars.$dark;
+			color: vars.$light;
+		}
 	}
 
 	.split {
@@ -274,8 +294,8 @@
 		grid-template-columns: 40px 50px 50px 100px;
 	}
 
-	.selected {
-		border-left: 10px solid #2e86ab;
+	.btn.selected {
+		border-left: 5px solid #2e86ab;
 		transition: 200ms;
 	}
 
