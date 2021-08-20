@@ -2,9 +2,9 @@
 	import dayjs from 'dayjs';
 	import isToday from 'dayjs/plugin/isToday';
 	import { Reminder, reminderStore } from '../state/reminders';
-	import { L } from '../i18n-helper/i18n';
+	import { i18nObject } from '../i18n/i18n-node';
 	import { lang } from '../state/lang';
-
+	$: LL = i18nObject($lang);
 	dayjs.extend(isToday);
 
 	import { createEventDispatcher, onMount } from 'svelte';
@@ -161,16 +161,16 @@
 	class:light={!$reminderStore.darkMode}
 >
 	<button id="monthYearSkip" class="btn sr-only" on:click={focusDateSkip}>
-		{L[$lang].SKIP_MONTHS()}
+		{LL.SKIP_MONTHS()}
 	</button>
-	<h2>{L[$lang].MONTH_YEAR_SELECTION()}</h2>
+	<h2>{LL.MONTH_YEAR_SELECTION()}</h2>
 	{#if !!present}
 		<div class="grid split month-year--selection">
 			<button class="btn prev" on:click={prevYear}>
 				{year - 1}
 				<span class="sr-only">
 					{#if year - 1 < present.year()}
-						{L[$lang].DATE_IN_PAST()}
+						{LL.DATE_IN_PAST()}
 					{/if}
 				</span>
 			</button>
@@ -183,11 +183,11 @@
 							month = index;
 						}}
 					>
-						{L[$lang][mth]()}
+						{LL[mth]()}
 						<span class="sr-only">
 							{year}
 							{#if year < present.year() || (year === present.year() && index < present.month())}
-								{L[$lang].DATE_IN_PAST()}
+								{LL.DATE_IN_PAST()}
 							{/if}
 						</span>
 					</button>
@@ -199,18 +199,18 @@
 		</div>
 	{/if}
 
-	<button id="dateSkip" class="btn sr-only" on:click={focusRecur}>{L[$lang].SKIP_DAYS()}</button>
-	<h2>{L[$lang].DATE_SELECTION()}</h2>
+	<button id="dateSkip" class="btn sr-only" on:click={focusRecur}>{LL.SKIP_DAYS()}</button>
+	<h2>{LL.DATE_SELECTION()}</h2>
 	<table>
-		<caption>{L[$lang][months[month]]()} {year}</caption>
+		<caption>{LL[months[month]]()} {year}</caption>
 		<thead>
-			<th>{L[$lang].SUN()}</th>
-			<th>{L[$lang].MON()}</th>
-			<th>{L[$lang].TUE()}</th>
-			<th>{L[$lang].WED()}</th>
-			<th>{L[$lang].THU()}</th>
-			<th>{L[$lang].FRI()}</th>
-			<th>{L[$lang].SAT()}</th>
+			<th>{LL.SUN()}</th>
+			<th>{LL.MON()}</th>
+			<th>{LL.TUE()}</th>
+			<th>{LL.WED()}</th>
+			<th>{LL.THU()}</th>
+			<th>{LL.FRI()}</th>
+			<th>{LL.SAT()}</th>
 		</thead>
 		<tbody>
 			{#each _weeks as week}
@@ -226,7 +226,7 @@
 								on:click={() => selectDate(day)}
 							>
 								{#if day.isSame(selectedDate)}
-									<span class="sr-only">{L[$lang].SELECTED()}</span>
+									<span class="sr-only">{LL.SELECTED()}</span>
 								{/if}
 								{day.date()}
 							</button>
@@ -237,9 +237,9 @@
 		</tbody>
 	</table>
 
-	<h2>{L[$lang].TIME_SELECTION()}</h2>
+	<h2>{LL.TIME_SELECTION()}</h2>
 	<Checkbox id={'recur'} bind:value={recur} on:change={recurChange}>
-		{L[$lang].RECUR()}
+		{LL.RECUR()}
 	</Checkbox>
 	<div class="grid time">
 		<button id="ampm" class="btn ampm" on:click={() => (isAM = !isAM)}>
@@ -251,14 +251,14 @@
 			<div>M</div>
 		</button>
 		<label>
-			<span class="sr-only">{L[$lang].HOUR()}</span>
+			<span class="sr-only">{LL.HOUR()}</span>
 			<input type="text" bind:value={hour} placeholder="12" />
 		</label>
 		<label>
-			<span class="sr-only">{L[$lang].MINUTE()}</span>
+			<span class="sr-only">{LL.MINUTE()}</span>
 			<input type="text" bind:value={minute} placeholder="00" />
 		</label>
-		<button class="btn" on:click={selectTime}>{L[$lang].SELECT_TIME()}</button>
+		<button class="btn" on:click={selectTime}>{LL.SELECT_TIME()}</button>
 	</div>
 </section>
 

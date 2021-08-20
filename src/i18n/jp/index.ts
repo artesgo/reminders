@@ -1,4 +1,6 @@
-export const jp = {
+import type { Translation } from '../i18n-types';
+
+const jp: Translation = {
 	TITLE: 'リマインダー',
 	DESCRIPTION: '覚えておきたいことは',
 	URL: 'リマインダー URL',
@@ -49,3 +51,5 @@ export const jp = {
 	SELECTED: 'JP_Selected',
 	RECUR: 'JP_Recur Weekly',
 };
+
+export default jp;

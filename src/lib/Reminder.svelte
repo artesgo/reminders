@@ -7,9 +7,9 @@
 	import type { Reminder } from './../state/reminders';
 	import ReminderComponent from './ReminderComponent.svelte';
 	import SchedulerModal from './SchedulerModal.svelte';
-	import { L } from '../i18n-helper/i18n';
+	import { i18nObject } from '../i18n/i18n-node';
 	import { lang } from '../state/lang';
-
+	$: LL = i18nObject($lang);
 	let expanded = {};
 	let newItem = {};
 	let newUrl = {};
@@ -39,7 +39,7 @@
 
 	function _getItemLength(list: Reminder[]) {
 		if ($lang === 'en') {
-			return `(${list.length} ${L[$lang].ITEM()}${list.length === 1 ? '' : 's'})`;
+			return `(${list.length} ${LL.ITEM()}${list.length === 1 ? '' : 's'})`;
 		} else {
 			return ``;
 		}
@@ -80,10 +80,10 @@
 
 <div class="grid row">
 	<label>
-		<span class="sr-only">{L[$lang].CREATE_GROUP()}</span>
-		<input type="text" bind:value={_list} placeholder={L[$lang].CREATE_GROUP()} />
+		<span class="sr-only">{LL.CREATE_GROUP()}</span>
+		<input type="text" bind:value={_list} placeholder={LL.CREATE_GROUP()} />
 	</label>
-	<button class="btn" on:click={_createList}>{L[$lang].CREATE_GROUP_BTN()}</button>
+	<button class="btn" on:click={_createList}>{LL.CREATE_GROUP_BTN()}</button>
 </div>
 
 <section aria-hidden={scheduler}>
@@ -115,42 +115,42 @@
 				<div class="list-adder grid row">
 					<div class="reminder-array">
 						<button class="btn no-right-border" on:click={() => (scheduler = !scheduler)}
-							>{L[$lang].CALENDAR()}</button
+							>{LL.CALENDAR()}</button
 						>
 						<label>
-							<span class="sr-only">{L[$lang].DESCRIPTION()}</span>
+							<span class="sr-only">{LL.DESCRIPTION()}</span>
 							<input
 								class="description"
 								type="text"
 								bind:value={newItem[ordered.list]}
-								placeholder={L[$lang].DESCRIPTION()}
+								placeholder={LL.DESCRIPTION()}
 							/>
 						</label>
 						<label>
-							<span class="sr-only">{L[$lang].URL()}</span>
+							<span class="sr-only">{LL.URL()}</span>
 							<input
 								class="url"
 								type="text"
 								bind:value={newUrl[ordered.list]}
-								placeholder={L[$lang].URL()}
+								placeholder={LL.URL()}
 							/>
 						</label>
 					</div>
 					<button class="btn" on:click={() => _addItem(ordered.list, ordered.order, true)}
-						>{L[$lang].ADD()}</button
+						>{LL.ADD()}</button
 					>
 				</div>
 				<!-- should include key to prevent  -->
 				{#each _sort($reminderStore.reminders[ordered.order][ordered.list], 'when') as reminder (reminder.id)}
 					<ReminderComponent {reminder} />
 				{:else}
-					<div class="no-items">{L[$lang].NONE()}</div>
+					<div class="no-items">{LL.NONE()}</div>
 				{/each}
 			</div>
 		{/if}
 	{:else}
 		<h2 class="no-items">
-			{L[$lang].CLEAR()}
+			{LL.CLEAR()}
 			{#if $takodachiMode}
 				<img class="sunny" src="/svg/takodachi.svg" role="presentation" alt="" />
 			{:else}

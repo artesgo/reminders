@@ -4,9 +4,9 @@
 	import { createUpdateItem, deleteItem } from '../state/reminder-actions';
 	import { onDestroy, onMount } from 'svelte';
 	import SchedulerModal from './SchedulerModal.svelte';
-	import { L } from '../i18n-helper/i18n';
+	import { i18nObject } from '../i18n/i18n-node';
 	import { lang } from '../state/lang';
-
+	$: LL = i18nObject($lang);
 	export let reminder: Reminder;
 	let _edit = false;
 	let _when;
@@ -50,7 +50,7 @@
 	{#if !_edit}
 		<div class="reminder-array">
 			{#if _past}
-				<span class="countdown expired">{L[$lang].EXPIRED()}</span>
+				<span class="countdown expired">{LL.EXPIRED()}</span>
 			{:else}
 				<span class="countdown">{`${when}`}</span>
 			{/if}
@@ -59,21 +59,21 @@
 			</div>
 			<span class="url">
 				{#if !!reminder.url}
-					<a href={reminder.url} target="_blank">{L[$lang].LINK()}</a>
+					<a href={reminder.url} target="_blank">{LL.LINK()}</a>
 				{/if}
 			</span>
 		</div>
 	{:else}
 		<div class="reminder-array">
 			<button class="btn no-right-border" on:click={() => (scheduler = !scheduler)}
-				>{L[$lang].UPDATE_TIME()}</button
+				>{LL.UPDATE_TIME()}</button
 			>
 			<label>
-				<div class="sr-only">{L[$lang].DESCRIPTION()}</div>
+				<div class="sr-only">{LL.DESCRIPTION()}</div>
 				<input type="text" bind:value={reminder.description} />
 			</label>
 			<label>
-				<div class="sr-only">{L[$lang].URL()}</div>
+				<div class="sr-only">{LL.URL()}</div>
 				<input type="text" bind:value={reminder.url} />
 			</label>
 		</div>
@@ -83,14 +83,12 @@
 			<button
 				class="btn no-right-border"
 				on:click={() => createUpdateItem(reminder, true, false)}
-				on:click={() => (_edit = !_edit)}>{L[$lang].SAVE()}</button
+				on:click={() => (_edit = !_edit)}>{LL.SAVE()}</button
 			>
 		{:else}
-			<button class="btn no-right-border" on:click={() => (_edit = !_edit)}
-				>{L[$lang].EDIT()}</button
-			>
+			<button class="btn no-right-border" on:click={() => (_edit = !_edit)}>{LL.EDIT()}</button>
 		{/if}
-		<button class="btn" on:click={() => deleteItem(reminder)}>{L[$lang].DELETE()}</button>
+		<button class="btn" on:click={() => deleteItem(reminder)}>{LL.DELETE()}</button>
 	</div>
 </div>
 

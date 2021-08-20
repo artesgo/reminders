@@ -5,8 +5,9 @@
 	import SchedulerComponent from './SchedulerComponent.svelte';
 	export let scheduler = false;
 	export let reminder: Reminder = null;
-	import { L } from '../i18n-helper/i18n';
+	import { i18nObject } from '../i18n/i18n-node';
 	import { lang } from '../state/lang';
+	$: LL = i18nObject($lang);
 </script>
 
 {#if scheduler}
@@ -19,7 +20,7 @@
 		<div class="scheduler">
 			<div class="scheduler-items">
 				<SchedulerComponent on:schedule {reminder} />
-				<button class="btn" on:click={() => (scheduler = !scheduler)}>{L[$lang].CANCEL()}</button>
+				<button class="btn" on:click={() => (scheduler = !scheduler)}>{LL.CANCEL()}</button>
 			</div>
 		</div>
 	</div>

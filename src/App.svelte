@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { lang } from './state/lang';
 	import { onMount } from 'svelte';
-	import { L } from './i18n-helper/i18n';
+	import { i18nObject } from './i18n/i18n-node';
 	import Reminder from './lib/Reminder.svelte';
 	import { reminderStore } from './state/reminders';
+	$: LL = i18nObject($lang);
 	onMount(() => {
 		$reminderStore.darkMode = localStorage.getItem('darkMode') === 'true';
 	});
@@ -23,21 +24,21 @@
 		<header>
 			<button class="btn-icon" on:click={toggleDarkMode}>
 				{#if $reminderStore.darkMode}
-					<div class="sr-only">{L[$lang].LIGHT()}</div>
+					<div class="sr-only">{LL.LIGHT()}</div>
 					<img src="./svg/sun.svg" role="presentation" alt="" />
 				{:else}
-					<div class="sr-only">{L[$lang].DARK()}</div>
+					<div class="sr-only">{LL.DARK()}</div>
 					<img src="./svg/moon.svg" role="presentation" alt="" />
 				{/if}
 			</button>
-			<h1>{L[$lang].TITLE()}</h1>
-			<!-- <button class="btn" on:click={toggleLang}>
+			<h1>{LL.TITLE()}</h1>
+			<button class="btn" on:click={toggleLang}>
 				{#if $lang === 'en'}
 					jp
 				{:else}
 					en
 				{/if}
-			</button> -->
+			</button>
 			<div class="spacer" />
 		</header>
 		<Reminder />

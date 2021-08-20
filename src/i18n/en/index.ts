@@ -1,4 +1,6 @@
-export const en = {
+import type { BaseTranslation } from 'typesafe-i18n';
+
+const en: BaseTranslation = {
 	TITLE: 'Reminders',
 	DESCRIPTION: 'Reminder Description',
 	URL: 'Reminder URL',
@@ -49,3 +51,5 @@ export const en = {
 	SELECTED: 'Selected',
 	RECUR: 'Recur Weekly',
 };
+
+export default en;
