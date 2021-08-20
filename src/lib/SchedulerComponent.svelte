@@ -9,6 +9,7 @@
 
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import Checkbox from './Checkbox.svelte';
 	export let month: number = dayjs().month();
 	export let year: number = dayjs().year();
 	export let reminder: Reminder = null;
@@ -24,6 +25,7 @@
 	let hour: number;
 	let minute: number;
 	let isAM: boolean;
+	let recur: boolean;
 	onMount(() => {
 		if (reminder) {
 			let reminderDate = dayjs(reminder.when);
@@ -32,6 +34,7 @@
 			selectDate(reminderDate.startOf('day'));
 			hour = reminderDate.hour();
 			minute = reminderDate.minute();
+			recur = !!reminder.recur;
 		} else {
 			// allows selection of am / pm
 			isAM = dayjs().hour() < 12;
@@ -106,7 +109,7 @@
 		// get diff in minutes
 		formattedDateTime = dayjs(`${formattedDate} ${parseHr}:${parseMn}:00`);
 		const when = +formattedDateTime;
-		schedule('schedule', { when });
+		schedule('schedule', { when, recur });
 	}
 	function prevMonth() {
 		month--;
@@ -134,11 +137,21 @@
 	function focusDateSkip() {
 		focusElementById('dateSkip');
 	}
-	function focusHour() {
-		focusElementById('ampm');
+	function focusRecur() {
+		focusElementById('recur');
 	}
 	function focusElementById(id: string) {
 		document.getElementById(id).focus();
+	}
+	function isRecurrence(date, selectedDate) {
+		if (!recur) {
+			return false;
+		}
+		let diff = dayjs(date).diff(selectedDate, 'days');
+		return diff % 7 === 0 && diff > 0;
+	}
+	function recurChange() {
+		selectDate(selectedDate);
 	}
 </script>
 
@@ -150,6 +163,7 @@
 	<button id="monthYearSkip" class="btn sr-only" on:click={focusDateSkip}>
 		{L[$lang].SKIP_MONTHS()}
 	</button>
+	<h2>{L[$lang].MONTH_YEAR_SELECTION()}</h2>
 	{#if !!present}
 		<div class="grid split month-year--selection">
 			<button class="btn prev" on:click={prevYear}>
@@ -185,7 +199,7 @@
 		</div>
 	{/if}
 
-	<button id="dateSkip" class="btn sr-only" on:click={focusHour}>{L[$lang].SKIP_DAYS()}</button>
+	<button id="dateSkip" class="btn sr-only" on:click={focusRecur}>{L[$lang].SKIP_DAYS()}</button>
 	<h2>{L[$lang].DATE_SELECTION()}</h2>
 	<table>
 		<caption>{L[$lang][months[month]]()} {year}</caption>
@@ -206,6 +220,7 @@
 							<button
 								class="btn"
 								class:selected={day.isSame(selectedDate)}
+								class:recurrence={isRecurrence(day, selectedDate)}
 								class:last-month={day.month() < month || day.year() < year}
 								class:next-month={day.month() > month || day.year() > year}
 								on:click={() => selectDate(day)}
@@ -223,6 +238,9 @@
 	</table>
 
 	<h2>{L[$lang].TIME_SELECTION()}</h2>
+	<Checkbox id={'recur'} bind:value={recur} on:change={recurChange}>
+		{L[$lang].RECUR()}
+	</Checkbox>
 	<div class="grid time">
 		<button id="ampm" class="btn ampm" on:click={() => (isAM = !isAM)}>
 			{#if isAM}
@@ -246,26 +264,27 @@
 
 <style lang="scss">
 	@use '../styles/variables' as vars;
-
+	h2 {
+		margin-bottom: 0.75rem;
+	}
 	.calendar {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-	.calendar h2 {
-		text-align: center;
+		h2 {
+			text-align: center;
+		}
 	}
 	.ampm {
 		position: relative;
+		div {
+			margin-left: 0.75rem;
+		}
 	}
 	.meridian {
 		position: absolute;
 		left: 0.5rem;
 	}
-	.ampm div {
-		margin-left: 0.75rem;
-	}
-
 	.light {
 		.btn.next-month,
 		.btn.last-month {
@@ -273,7 +292,6 @@
 			color: vars.$dark;
 		}
 	}
-
 	.dark {
 		.btn.next-month,
 		.btn.last-month {
@@ -281,7 +299,6 @@
 			color: vars.$light;
 		}
 	}
-
 	.split {
 		grid-template-columns: 1fr 3fr 1fr;
 		width: 100%;
@@ -292,18 +309,20 @@
 	}
 	.time {
 		grid-template-columns: 40px 50px 50px 100px;
+		margin-top: 0.5rem;
 	}
-
-	.btn.selected {
-		border-left: 5px solid #2e86ab;
+	.btn.selected.selected {
+		border-left: 5px solid vars.$hilight;
 		transition: 200ms;
 	}
-
+	.btn.recurrence {
+		border-left: 5px solid lighten(vars.$hilight, 30%);
+		transition: 200ms;
+	}
 	table,
 	.month-year--selection {
 		margin-bottom: 1rem;
 	}
-
 	table button {
 		width: 2.5rem;
 		height: 2rem;

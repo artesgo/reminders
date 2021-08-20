@@ -109,9 +109,7 @@ export function createUpdateItem(reminder: Reminder, populated: boolean, newItem
 			},
 		},
 	}));
-	// send when to storage
-	if (reminderStore) {
-	}
+
 	chrome.runtime.sendMessage({ createSchedule: true, reminder }, function (response) {
 		if (response && response.success) {
 			console.log(response.success);
@@ -162,10 +160,11 @@ export function addReminder(
 	url: string,
 	populated: boolean,
 	index: number,
+	recur: boolean = false,
 ) {
 	// list--order--url--description
 	// when
 	const id = `${list}${splitter}${index}`;
-	const reminder: Reminder = { index, id, description, url, when, list, order };
+	const reminder: Reminder = { index, id, description, url, when, list, order, recur };
 	createUpdateItem(reminder, populated, true);
 }

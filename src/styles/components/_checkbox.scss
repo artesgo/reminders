@@ -1,0 +1,43 @@
+@use '../variables' as vars;
+
+label.atg-checkbox {
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	.checkmark {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-right: 1rem;
+		box-sizing: border-box;
+	}
+	.checked {
+		width: 0.5rem;
+		height: 0.5rem;
+		background: vars.$hilight;
+		border: 1px solid vars.$dark;
+	}
+}
+.dark {
+	.checkmark {
+		border: 1px solid lighten(vars.$dark, 20%);
+		background: lighten(vars.$dark, 10%);
+	}
+	.atg-checkbox input:focus + .checkmark,
+	.atg-checkbox input:hover + .checkmark {
+		border: 2px solid darken(vars.$light, 20%);
+	}
+}
+.light {
+	.checkmark {
+		border: 1px solid vars.$dark;
+		background: darken(vars.$light, 10%);
+	}
+	.atg-checkbox input:focus + .checkmark,
+	.atg-checkbox input:hover + .checkmark {
+		border: 2px solid lighten(vars.$dark, 20%);
+	}
+}

@@ -1,12 +1,19 @@
 import { createNotification } from './notification';
 import { getAlarms } from './alarm';
 
+export const minute = 1;
+export const dayInMinutes = 60 * 24;
+export const weekInMinutes = dayInMinutes * 7;
+
 export function schedule(request, sender, sendResponse) {
 	if (request.createSchedule) {
 		let { reminder } = request;
+		let recur = reminder.recur ? weekInMinutes : null;
+		console.log(recur);
 		// alarms are getting created
 		chrome.alarms.create(reminder.id, {
 			when: reminder.when,
+			periodInMinutes: recur,
 		});
 		chrome.storage.sync.set({
 			[reminder.id]: reminder,

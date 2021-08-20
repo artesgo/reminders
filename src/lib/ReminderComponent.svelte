@@ -34,8 +34,10 @@
 		clearInterval(interval);
 	});
 	$: when = `${_hours}:${_minutes < 10 ? '0' : ''}${_minutes}`;
-	function schedule({ when }) {
+
+	function schedule({ when, recur }) {
 		reminder.when = when;
+		reminder.recur = recur;
 		createUpdateItem(reminder, true, false);
 		updateTimes();
 		scheduler = false;

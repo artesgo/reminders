@@ -8,6 +8,7 @@ export interface Reminder {
 	order: number;
 	when: number;
 	index: number;
+	recur: boolean;
 }
 
 type ReminderArrayDef = {

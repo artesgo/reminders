@@ -1,5 +1,5 @@
 import { createNotification } from './background/notification';
-import { schedule, getSchedule, deleteScheduled } from './background/scheduler';
+import { schedule, getSchedule, deleteScheduled, weekInMinutes } from './background/scheduler';
 import { createTab } from './background/tab';
 
 // spin up listeners, add contextMenu items
@@ -13,14 +13,23 @@ export class BackgroundApp {
 		});
 
 		chrome.alarms.onAlarm.addListener((alarm) => {
-			chrome.storage.sync.get(alarm.name, (schedule) => {
+			chrome.storage.sync.get(alarm.name, (reminder) => {
 				// storage get returns the object itself, thus the need to use schedule[key].prop
-				if (!!schedule[alarm.name].url) {
-					chrome.tabs.create({ url: schedule[alarm.name].url });
+				if (!!reminder[alarm.name].url) {
+					chrome.tabs.create({ url: reminder[alarm.name].url });
+				}
+				console.log('schedule', reminder);
+				console.log('alarm', alarm);
+				if (reminder[alarm.name].recur) {
+					reminder[alarm.name].when += weekInMinutes * 60 * 1000;
+					// updates
+					chrome.storage.sync.set({
+						[alarm.name]: reminder[alarm.name],
+					});
 				}
 				createNotification(
-					schedule[alarm.name].description,
-					schedule[alarm.name].url || 'Reminder',
+					reminder[alarm.name].description,
+					reminder[alarm.name].url || 'Reminder',
 				);
 			});
 		});

@@ -20,6 +20,7 @@ export const en = {
 	CANCEL: 'Cancel',
 	SKIP_MONTHS: 'Skip Month and Year Selection',
 	SKIP_DAYS: 'Skip Date Selection',
+	MONTH_YEAR_SELECTION: 'Month and Year Selection',
 	DATE_SELECTION: 'Date Selection',
 	TIME_SELECTION: 'Time Selection',
 	HOUR: 'hour',
@@ -46,4 +47,5 @@ export const en = {
 	DEC: 'Dec',
 	DATE_IN_PAST: 'dates would be in the past',
 	SELECTED: 'Selected',
+	RECUR: 'Recur Weekly',
 };

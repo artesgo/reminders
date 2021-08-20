@@ -20,6 +20,7 @@ export const jp = {
 	CANCEL: '解除',
 	SKIP_MONTHS: 'JP_Skip Month and Year Selection',
 	SKIP_DAYS: 'JP_Skip Date Selection',
+	MONTH_YEAR_SELECTION: 'JP_Month and Year Selection',
 	DATE_SELECTION: 'JP_Date Selection',
 	TIME_SELECTION: '時間選択',
 	HOUR: '時',
@@ -46,4 +47,5 @@ export const jp = {
 	DEC: '十二',
 	DATE_IN_PAST: 'JP_dates would be in the past',
 	SELECTED: 'JP_Selected',
+	RECUR: 'JP_Recur Weekly',
 };
