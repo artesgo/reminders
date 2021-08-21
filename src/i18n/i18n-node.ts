@@ -3,8 +3,8 @@
 
 import { i18nString, i18nObject, i18n } from './i18n-util';
 
-const L = i18n()
+const L = i18n();
 
-export { i18nString, i18nObject, L }
+export { i18nString, i18nObject, L };
 
-export default L
+export default L;

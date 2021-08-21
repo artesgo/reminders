@@ -162,7 +162,9 @@
 
 <SchedulerModal bind:scheduler on:schedule={(data) => schedule({ ...data.detail })} />
 
-<style>
+<style lang="scss">
+	@use '../styles/variables' as vars;
+
 	[aria-hidden] {
 		overflow: hidden;
 	}
@@ -183,7 +185,7 @@
 		border-right: none;
 	}
 	.list-adder button {
-		border-left: 2px solid #2e86ab;
+		border-left: 2px solid vars.$hilight;
 	}
 
 	button.accordion {

@@ -94,7 +94,9 @@
 
 <SchedulerModal bind:scheduler on:schedule={(data) => schedule({ ...data.detail })} {reminder} />
 
-<style>
+<style lang="scss">
+	@use '../styles/variables' as vars;
+
 	.grid {
 		margin: 4px 0;
 	}
@@ -106,7 +108,7 @@
 		height: 1.5rem;
 	}
 	.grid button {
-		border-left: 2px solid #2e86ab;
+		border-left: 2px solid vars.$hilight;
 	}
 
 	.reminder-array .url,

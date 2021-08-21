@@ -50,6 +50,8 @@ const en: BaseTranslation = {
 	DATE_IN_PAST: 'dates would be in the past',
 	SELECTED: 'Selected',
 	RECUR: 'Recur Weekly',
+	EN: 'English',
+	JP: '日本語',
 };
 
 export default en;

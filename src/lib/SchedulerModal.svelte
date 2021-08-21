@@ -27,8 +27,7 @@
 {/if}
 
 <style lang="scss">
-	$light: #fcfcfc;
-	$dark: #1e1e24;
+	@use '../styles/variables' as vars;
 
 	.overlay {
 		position: fixed;
@@ -38,8 +37,8 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background-color: #2e86ab59;
-		box-shadow: 0 0 20px #2e86ab59;
+		background-color: vars.$hilight-tpt;
+		box-shadow: 0 0 20px vars.$hilight-tpt;
 	}
 	.scheduler {
 		height: 100%;
@@ -53,11 +52,11 @@
 		border-radius: 4px;
 	}
 	.dark .scheduler-items {
-		background-color: $dark;
-		box-shadow: 0 0 10px $dark;
+		background-color: vars.$dark;
+		box-shadow: 0 0 10px vars.$dark;
 	}
 	.light .scheduler-items {
-		background-color: $light;
-		box-shadow: 0 0 10px $light;
+		background-color: vars.$light;
+		box-shadow: 0 0 10px vars.$light;
 	}
 </style>

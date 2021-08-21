@@ -32,11 +32,11 @@
 				{/if}
 			</button>
 			<h1>{LL.TITLE()}</h1>
-			<button class="btn" on:click={toggleLang}>
+			<button class="btn lang-toggle" on:click={toggleLang}>
 				{#if $lang === 'en'}
-					jp
+					{LL.JP()}
 				{:else}
-					en
+					{LL.EN()}
 				{/if}
 			</button>
 			<div class="spacer" />
@@ -58,6 +58,7 @@
 
 <style lang="scss" global>
 	@use './_globals';
+	@use './styles/variables' as vars;
 
 	main {
 		min-height: 600px;
@@ -84,7 +85,7 @@
 	}
 	input {
 		padding-left: 0.5rem;
-		border-left: 2px solid #2e86ab;
+		border-left: 2px solid vars.$hilight;
 		border-right: none;
 		height: 1.5rem;
 		transition: 200ms;
@@ -92,6 +93,10 @@
 	}
 	input:hover,
 	input:focus {
-		border-left: 5px solid #2e86ab;
+		border-left: 5px solid vars.$hilight;
+	}
+
+	.lang-toggle {
+		height: 75%;
 	}
 </style>
