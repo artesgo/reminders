@@ -1,7 +1,7 @@
 {
 	"name": "Artesgo Reminders",
 	"description": "TLDR: Multi-purpose URL scheduler + reminder extension. Schedule [insert website] urls to open exactly on time.",
-	"version": "1.4",
+	"version": "1.5",
 	"manifest_version": 3,
 	"permissions": ["storage", "alarms", "notifications", "contextMenus"],
 	"action": {
