@@ -52,6 +52,8 @@ const en: BaseTranslation = {
 	RECUR: 'Recur Weekly',
 	EN: 'English',
 	JP: '日本語',
+	COFFEE: 'Coffee Fund',
+	SUPPORT: 'Get Support',
 };
 
 export default en;

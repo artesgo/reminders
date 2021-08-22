@@ -212,6 +212,14 @@ export type Translation = {
 	 * 日本語
 	 */
 	JP: string;
+	/**
+	 * Coffee Fund
+	 */
+	COFFEE: string;
+	/**
+	 * Get Support
+	 */
+	SUPPORT: string;
 };
 
 export type TranslationFunctions = {
@@ -419,6 +427,14 @@ export type TranslationFunctions = {
 	 * 日本語
 	 */
 	JP: () => LocalizedString;
+	/**
+	 * Coffee Fund
+	 */
+	COFFEE: () => LocalizedString;
+	/**
+	 * Get Support
+	 */
+	SUPPORT: () => LocalizedString;
 };
 
 export type Formatters = {};

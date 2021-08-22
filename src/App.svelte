@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Locales } from './i18n/i18n-types';
 	import { lang } from './state/lang';
 	import { onMount } from 'svelte';
 	import { i18nObject } from './i18n/i18n-node';
@@ -7,6 +8,9 @@
 	$: LL = i18nObject($lang);
 	onMount(() => {
 		$reminderStore.darkMode = localStorage.getItem('darkMode') === 'true';
+		if (!!localStorage.getItem('lang')) {
+			$lang = localStorage.getItem('lang') as Locales;
+		}
 	});
 
 	function toggleDarkMode() {
@@ -16,6 +20,7 @@
 
 	function toggleLang() {
 		$lang === 'en' ? ($lang = 'jp') : ($lang = 'en');
+		localStorage.setItem('lang', $lang);
 	}
 </script>
 
@@ -54,6 +59,10 @@
 			}
 		</style>
 	</main>
+	<footer>
+		<a href="https://ko-fi.com/artesra" target="_blank">{LL.COFFEE()}</a>
+		<a href="https://github.com/artesgo/reminders/issues" target="_blank">{LL.SUPPORT()}</a>
+	</footer>
 </div>
 
 <style lang="scss" global>
@@ -61,8 +70,9 @@
 	@use './styles/variables' as vars;
 
 	main {
-		min-height: 600px;
+		min-height: 500px;
 	}
+
 	.grid {
 		display: grid;
 	}
@@ -98,5 +108,11 @@
 
 	.lang-toggle {
 		height: 75%;
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1rem;
 	}
 </style>

@@ -37,12 +37,12 @@
 		expanded[list] = !expanded[list];
 	}
 
-	function _getItemLength(list: Reminder[]) {
+	function _getItemsSuffix(list: Reminder[], translation: string) {
+		let suffix = '';
 		if ($lang === 'en') {
-			return `(${list.length} ${LL.ITEM()}${list.length === 1 ? '' : 's'})`;
-		} else {
-			return ``;
+			suffix = `${list.length === 1 ? '' : 's'}`;
 		}
+		return `(${list.length} ${translation}${suffix})`;
 	}
 
 	function _addItem(list: string, order: number, populated: boolean) {
@@ -107,7 +107,7 @@
 					/>
 				{/if}
 				{ordered.list.toUpperCase()}
-				{_getItemLength($reminderStore.reminders[ordered.order][ordered.list])}
+				{_getItemsSuffix($reminderStore.reminders[ordered.order][ordered.list], LL.ITEM())}
 			</h2>
 		</button>
 		{#if expanded[ordered.list]}

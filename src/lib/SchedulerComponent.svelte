@@ -308,7 +308,7 @@
 		grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem;
 	}
 	.time {
-		grid-template-columns: 40px 50px 50px 100px;
+		grid-template-columns: 40px 50px 50px 120px;
 		margin-top: 0.5rem;
 	}
 	.btn.selected.selected {
